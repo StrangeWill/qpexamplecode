@@ -18,7 +18,7 @@ io.on('connection', function(socket) {
 });
 
 var loopAsync = function() {
-  setImmediate(function() { loop(); });
+  setImmediate(loop);
 }
 
 function loop() {
