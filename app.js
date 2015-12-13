@@ -17,6 +17,10 @@ io.on('connection', function(socket) {
   });
 });
 
+var loopAsync = function() {
+  setImmediate(function() { loop(); });
+}
+
 function loop() {
   var delta = Date.now() - last;
   var currentState = {
@@ -25,11 +29,11 @@ function loop() {
   };
 
   state = currentState;
-  setTimeout(loop, 50);
+  loopAsync();
 }
 
 var last = Date.now();
 var state = { time: Date.now(), loopDelta: 0 };
-setTimeout(loop, 50);
+loopAsync();
 
 
