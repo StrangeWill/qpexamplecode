@@ -22,10 +22,13 @@ var loopAsync = function() {
 }
 
 function loop() {
+  gameLoops++;
   var delta = Date.now() - last;
+  last = Date.now();
   var currentState = {
     time: Date.now(),
-    loopDelta: delta
+    loopDelta: delta,
+    loops: gameLoops
   };
 
   state = currentState;
@@ -33,7 +36,8 @@ function loop() {
 }
 
 var last = Date.now();
-var state = { time: Date.now(), loopDelta: 0 };
+var gameLoops = 0;
+var state = { time: Date.now(), loopDelta: 0, loops: gameLoops };
 loopAsync();
 
 
